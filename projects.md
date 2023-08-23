@@ -1,7 +1,7 @@
 
 # COSN Summer Hackathon 2023 项目列表
 
-建议使用Issue在本次hackathon的主repo (https://github.com/OpenSci-CN/SummerHackathon2023) 下面创建自己的项目、添加项目说明（每个新项目是一个Issue），之后项目负责人folk主repo，在主repo下面创建自己项目的文件夹并协作开发，项目有阶段性成果的时候推荐创建PR并且merge到主repo，每个项目在自己的项目文件夹下进行开发，严禁修改其他项目组的文件，这里有去年hackathon的repo作为参考(https://github.com/OpenSci-CN/SummerHackathon2022)。
+建议使用Issue在本次hackathon的主repo (https://github.com/OpenSci-CN/SummerHackathon2023) 下面创建自己的项目、添加项目说明（每个新项目是一个Issue），之后项目负责人folk主repo，在主repo下面创建自己项目的文件夹并协作开发，项目有阶段性成果的时候推荐创建PR并且merge到主repo，每个项目在自己的项目文件夹下进行开发，严禁修改其他项目组的文件，这里有去年hackathon的repo作为参考(https://github.com/OpenSci-CN/SummerHackathon2022) 。
 
 <br>
 
