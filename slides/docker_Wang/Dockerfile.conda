@@ -1,0 +1,28 @@
+FROM base:glx_cn
+
+RUN curl -O https://repo.anaconda.com/miniconda/Miniconda3-py310_23.1.0-1-Linux-x86_64.sh && \
+	bash Miniconda3-py310_23.1.0-1-Linux-x86_64.sh -b -p /opt/conda
+ENV PATH="$PATH:/opt/conda/bin:/opt/conda/condabin"
+RUN conda init && \
+    conda update -y conda
+
+#RUN apt-get update && \
+#    apt-mark hold libglapi-mesa libgbm1 libegl-mesa0  libgl1-mesa-dri libglx-mesa0 && \
+#    apt-get install -y --no-install-recommends \
+#        xvfb \
+#        libnss3 \
+#		libpci-dev && \
+#    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN pip install spyder matplotlib scipy pandas scikit-learn scikit-image && \
+    pip install pillow pyqt5 pyvistaqt fury dipy nibabel nipype pydicom && \
+    pip install darkdetect mne mne_connectivity ipywidgets ipyevents h5py
+
+RUN ln -s /usr/lib/x86_64-linux-gnu/dri /usr/lib/dri && \
+    rm /opt/conda/lib/libstdc++.so.6 && \
+    rm /opt/conda/lib/libstdc++.so && \
+    ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30 /opt/conda/lib/libstdc++.so.6 && \
+    ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30 /opt/conda/lib/libstdc++.so
+
+RUN pip install fmriprep
+WORKDIR /tmp
