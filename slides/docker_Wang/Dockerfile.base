@@ -1,0 +1,58 @@
+FROM ubuntu:jammy
+ARG DEBIAN_FRONTEND=noninteractive
+ARG TZ="Asia/Shanghai"
+
+# Install Base Lib
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+		libgl1-mesa-dri=22.0.1-1ubuntu2 \
+    	libglx-mesa0=22.0.1-1ubuntu2 \
+    	libgl1-mesa-glx=22.0.1-1ubuntu2 \
+    	libglapi-mesa=22.0.1-1ubuntu2 \
+    	libgbm1=22.0.1-1ubuntu2 \
+    	libegl-mesa0=22.0.1-1ubuntu2 \
+    	libgl1-mesa-dri=22.0.1-1ubuntu2 \
+    	libglx-mesa0=22.0.1-1ubuntu2 \
+		apt-file \
+		tcsh \
+		build-essential \
+		xvfb \
+		libgomp1 \
+		binutils \
+		tzdata \
+		bzip2 \
+		ca-certificates \
+		curl \
+		unzip \
+		less \
+		vim \
+		vim-gui-common \
+		mesa-utils \
+		qtbase5-dev \
+		xauth \
+		libnss3 \
+		libpci-dev \
+		libxcomposite1 \
+		libxdamage1 \
+		libxrandr2 \
+		libxcursor1 \
+		libxi6 \
+		libxtst6 \
+		libasound2 \
+		language-pack-zh-hans fonts-droid-fallback ttf-wqy-zenhei \
+		ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming \
+		mricron && \
+    apt-mark hold libglapi-mesa libgbm1 libegl-mesa0  libgl1-mesa-dri libglx-mesa0 && \
+	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Support zh_CN
+RUN echo "LANG=\"zh_CN.UTF-8\"" >> /etc/environment && \
+	echo "LANGUAGE=\"zh_CN:zh:en_US:en\"" >> /etc/environment && \
+	echo "en_US.UTF-8 UTF-8" >> /var/lib/locales/supported.d/local && \
+	echo "zh_CN.UTF-8 UTF-8" >> /var/lib/locales/supported.d/local && \
+	echo "zh_CN.GBK GBK" >> /var/lib/locales/supported.d/local && \
+	echo "zh_CN GB2312" >> /var/lib/locales/supported.d/local && \
+	locale-gen
+
+WORKDIR /tmp
+# useradd -m -G adm,dialout,cdrom,floppy,audio,dip,video,plugdev -s /bin/bash sandy
